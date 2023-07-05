@@ -1,0 +1,22 @@
+server:
+  port: 9090
+wx:
+  cp:
+    corpId: "wwce28b4b8b57cecec"
+    agentId: 1000002
+    secret: "xJFBmDpNt2OtvTM0qMBUG1GIjvWE5ItkZo62-Tq8Big"
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # ????
+spring:
+  mvc:
+    path match:
+      # ????
+      matching-strategy: ant-path-matcher
+  application:
+    name: watch-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/watch-list?characterEncoding=utf-8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    username: root
