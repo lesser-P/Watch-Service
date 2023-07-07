@@ -4,13 +4,18 @@ import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.beyond.watchservice.dao.UserInfoMapper;
+import com.beyond.watchservice.model.InfoVo;
 import com.beyond.watchservice.model.UrlInfo;
 import com.beyond.watchservice.model.UserInfo;
 import com.beyond.watchservice.model.dto.UserDTO;
 import com.beyond.watchservice.service.UrlService;
 import com.beyond.watchservice.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements UserService {
@@ -42,6 +47,23 @@ public class UserServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> imple
             urlInfo.setUrl(url);
             urlService.save(urlInfo);
         }
+    }
+
+    @Override
+    public List<InfoVo> getAll() {
+        List<InfoVo> list=new ArrayList<>();
+        List<UserInfo> userInfos = this.list();
+        userInfos.forEach(item->{
+            List<UrlInfo> urlInfos = urlService.list(new LambdaQueryWrapper<UrlInfo>().eq(UrlInfo::getUserId, item.getId()));
+            urlInfos.forEach(urlInfo -> {
+                InfoVo infoVo = new InfoVo();
+                BeanUtils.copyProperties(item,infoVo);
+                infoVo.setServerName(urlInfo.getServerName());
+                infoVo.setUrl(urlInfo.getUrl());
+                list.add(infoVo);
+            });
+        });
+        return list;
     }
 }
 

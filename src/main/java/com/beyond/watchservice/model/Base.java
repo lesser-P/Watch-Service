@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -15,9 +17,11 @@ public class Base {
     private Long id;
 
     @TableField("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime createTime;
 
     @TableField("update_time")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime updateTime;
 
     @TableField("is_deleted")
