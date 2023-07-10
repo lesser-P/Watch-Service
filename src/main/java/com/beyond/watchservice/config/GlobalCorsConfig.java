@@ -1,5 +1,8 @@
 package com.beyond.watchservice.config;
 
+import com.beyond.watchservice.utils.MQCode;
+import org.springframework.amqp.core.*;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;

@@ -3,6 +3,7 @@ package com.beyond.watchservice;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
+//import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -16,6 +17,7 @@ import java.net.UnknownHostException;
 @Slf4j
 @EnableScheduling
 @MapperScan("com.beyond.watchservice.dao")
+//@EnableRabbit
 public class SpringApplicationStart {
     public static void main(String[] args) throws UnknownHostException {
         SpringApplication app = new SpringApplication(SpringApplicationStart.class);

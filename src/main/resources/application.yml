@@ -1,7 +1,5 @@
 server:
   port: 9090
-wx:
-  cp:
 
 mybatis-plus:
   configuration:
